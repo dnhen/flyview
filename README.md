@@ -1,3 +1,3 @@
-## Flight Information Display System
+# Flight Information Display System
 
 Simple and effective flight information display system for use at airports

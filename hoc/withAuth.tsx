@@ -3,8 +3,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/router';
 import { ComponentType } from 'react';
 
-export const withAuth = <T,>(Component: ComponentType<T>) => {
-  const AuthProtected = (hocProps: T) => {
+export const withAuth = (Component: ComponentType) => {
+  const AuthProtected = (hocProps: any) => {
     const router = useRouter();
     const { isAuthLoading, currentUser } = useAuth();
 

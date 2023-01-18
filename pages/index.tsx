@@ -1,11 +1,26 @@
-import { Box, Text } from '@chakra-ui/react';
+import { useAuth } from '@/contexts/AuthContext';
+import { withAuth } from '@/hoc/withAuth';
+import { Button, Flex } from '@chakra-ui/react';
+import Head from 'next/head';
 
 const Home = () => {
+  const { currentUser, logout } = useAuth();
+
+  console.log(currentUser);
+
   return (
-    <Box bg="gray.500">
-      <Text fontSize="5xl">Test</Text>
-    </Box>
+    <>
+      <Head>
+        <title>Flight Information Display</title>
+        <meta name="description" content="Flight Information Display" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Flex>
+        Main body
+        <Button onClick={logout}>Logout</Button>
+      </Flex>
+    </>
   );
 };
 
-export default Home;
+export default withAuth(Home);

@@ -2,7 +2,7 @@ import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
 import { withAuth } from '@/hoc/withAuth';
 import { useFlights } from '@/hooks/useFlights';
-import { Text } from '@chakra-ui/react';
+import { Divider, Heading, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 
 const Home = () => {
@@ -13,16 +13,16 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Flight Information Display</title>
-        <meta name="description" content="Flight Information Display" />
+        <title>404 // Flight Information Display</title>
+        <meta name="description" content="404 // Flight Information Display" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="noindex" />
       </Head>
       <Navbar />
       <StandardPage>
-        <Text>
-          Standard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home
-          page
-        </Text>
+        <Heading>404</Heading>
+        <Divider />
+        <Text>This page does not exist!</Text>
       </StandardPage>
     </>
   );

@@ -1,9 +1,16 @@
+import { Divider } from '@/theme/components/Divider';
+import { Heading } from '@/theme/components/Heading';
+import { Text } from '@/theme/components/Text';
+import { colors } from '@/theme/foundations/colors';
+import { fonts } from '@/theme/foundations/fonts';
 import { extendTheme } from '@chakra-ui/react';
-import { colors } from './foundations/colors';
-import { fonts } from './foundations/fonts';
 
 export const theme = extendTheme({
-  components: {},
+  components: {
+    Divider,
+    Text,
+    Heading
+  },
   colors,
   fonts
 });

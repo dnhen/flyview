@@ -1,12 +1,14 @@
 import { db } from '@/firebaseConfig';
-import { addDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export const useFlights = () => {
   const [flights, setFlights] = useState<IFirestoreFlightDocument[]>([]);
 
   useEffect(() => {
-    onSnapshot(collection(db, 'flights'), (snapshot) => {
+    const flightsRef = collection(db, 'flights');
+    const q = query(flightsRef, orderBy('scheduledDepartureTime'));
+    onSnapshot(q, (snapshot) => {
       setFlights(snapshot.docs.map((doc) => doc.data() as IFirestoreFlightDocument));
     });
   }, []);

@@ -1,6 +1,6 @@
 import { useFlights } from '@/hooks/useFlights';
 import { viewerWidths } from '@/pages/viewer';
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 export const ViewerBody = () => {
   const { flights } = useFlights();
@@ -10,7 +10,7 @@ export const ViewerBody = () => {
       const departureTimeDate = new Date(flight.scheduledDepartureTime.seconds * 1000);
       const boardingTimeDate = new Date(flight.scheduledBoardingTime.seconds * 1000);
       return (
-        <Flex key={i} gap="8" w="full" px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
+        <Flex key={i} gap="8" w="full" h="72px" px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
           <Text fontSize="5xl" color="white" w={viewerWidths.flight / 100}>
             {flight.flightNumber}
           </Text>
@@ -34,5 +34,33 @@ export const ViewerBody = () => {
     });
   };
 
-  return <>{flightsViewerRenderer()}</>;
+  return (
+    <Box h="calc(100vh - 144px)" overflowY="hidden">
+      {flightsViewerRenderer()}
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+      <Flex w="full" h="72px" bg="gray.900" _even={{ bg: 'gray.600' }}></Flex>
+    </Box>
+  );
 };

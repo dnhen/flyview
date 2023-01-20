@@ -1,3 +1,4 @@
+import { Navbar } from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
 import { withAuth } from '@/hoc/withAuth';
 import { Button, Flex } from '@chakra-ui/react';
@@ -15,6 +16,7 @@ const Home = () => {
         <meta name="description" content="Flight Information Display" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar />
       <Flex>
         Main body
         <Button onClick={logout}>Logout</Button>

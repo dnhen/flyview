@@ -1,13 +1,14 @@
 import { Navbar } from '@/components/Navbar';
-import { useAuth } from '@/contexts/AuthContext';
+import { StandardPage } from '@/components/StandardPage';
 import { withAuth } from '@/hoc/withAuth';
-import { Button, Flex } from '@chakra-ui/react';
+import { useFlights } from '@/hooks/useFlights';
+import { Button, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 
 const Home = () => {
-  const { currentUser, logout } = useAuth();
+  const { flights, addFlight } = useFlights();
 
-  console.log(currentUser);
+  console.log(flights);
 
   return (
     <>
@@ -17,10 +18,13 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Flex>
-        Main body
-        <Button onClick={logout}>Logout</Button>
-      </Flex>
+      <StandardPage>
+        <Text>
+          Standard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home pageStandard home
+          page
+        </Text>
+        <Button onClick={() => addFlight('QF 498', 'Sydney', '21:00', '20:45', 1)}>Add flight test</Button>
+      </StandardPage>
     </>
   );
 };

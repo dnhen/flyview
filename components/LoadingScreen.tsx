@@ -1,5 +1,9 @@
-import { Box } from '@chakra-ui/react';
+import { Flex, Spinner } from '@chakra-ui/react';
 
 export const LoadingScreen = () => {
-  return <Box>Loading...</Box>;
+  return (
+    <Flex w="100vw" h="100vh" alignItems="center" justifyContent="center">
+      <Spinner size="xl" />
+    </Flex>
+  );
 };

@@ -31,7 +31,7 @@ export const useFlights = () => {
       scheduledBoardingTime,
       actualBoardingTime: scheduledBoardingTime,
       gate,
-      remark: null,
+      remark: '',
       created: serverTimestamp()
     });
   };
@@ -49,7 +49,7 @@ interface IFirestoreFlightDocument {
   destination: string;
   flightNumber: string;
   gate: number;
-  remark: string | null;
+  remark: string;
   scheduledBoardingTime: IFirestoreTimestamp;
   scheduledDepartureTime: IFirestoreTimestamp;
 }

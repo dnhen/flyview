@@ -1,15 +1,10 @@
 import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
 import { withAuth } from '@/hoc/withAuth';
-import { useFlights } from '@/hooks/useFlights';
 import { Divider, Heading, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 
 const Home = () => {
-  const { flights } = useFlights();
-
-  console.log(flights);
-
   return (
     <>
       <Head>

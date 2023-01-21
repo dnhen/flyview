@@ -1,21 +1,27 @@
 import { db } from '@/firebaseConfig';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { addDoc, collection, DocumentData, DocumentReference, onSnapshot, orderBy, query, serverTimestamp, Timestamp, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
-export const useFlights = () => {
+export const useFlights = (airlineCode: string = '') => {
   const [flights, setFlights] = useState<IFirestoreFlightDocument[]>([]);
 
   useEffect(() => {
     const flightsRef = collection(db, 'flights');
-    const q = query(flightsRef, orderBy('scheduledDepartureTime'));
+    const q = query(flightsRef, where('airlineCode', '==', airlineCode), orderBy('scheduledDepartureTime'));
     onSnapshot(q, (snapshot) => {
-      setFlights(snapshot.docs.map((doc) => doc.data() as IFirestoreFlightDocument));
+      setFlights(
+        snapshot.docs.map((doc) => ({
+          ref: doc.ref,
+          data: doc.data()
+        }))
+      );
     });
-  }, []);
+  }, [airlineCode]);
 
   /***
    * Adds a flight to the firestore database
    *
+   * @param {string} airlineCode the airline's code
    * @param {string} flightNumber the flight number
    * @param {string} destination the flight's destination
    * @param {Date} scheduledDepartureTime the scheduled departure time
@@ -23,9 +29,10 @@ export const useFlights = () => {
    * @param {number} gate the flight's departure gate
    * @return a promise pointing to the newly created document reference
    */
-  const addFlight = (flightNumber: string, destination: string, scheduledDepartureTime: Date, scheduledBoardingTime: Date, gate: number) => {
+  const addFlight = (airlineCode: string, flightNumber: string, destination: string, scheduledDepartureTime: Date, scheduledBoardingTime: Date, gate: number) => {
     const flightsColRef = collection(db, 'flights');
     return addDoc(flightsColRef, {
+      airlineCode,
       flightNumber,
       destination,
       scheduledDepartureTime,
@@ -38,13 +45,23 @@ export const useFlights = () => {
     });
   };
 
+  const updateFlight = (docRef: DocumentReference, newValues: {}) => {
+    return updateDoc(docRef, newValues);
+  };
+
   return {
     flights,
-    addFlight
+    addFlight,
+    updateFlight
   };
 };
 
-interface IFirestoreFlightDocument {
+export interface IFirestoreFlightDocument {
+  ref: DocumentReference;
+  data: DocumentData;
+}
+
+interface IFirestoreFlightData {
   actualBoardingTime: Timestamp;
   actualDepartureTime: Timestamp;
   created: Timestamp;

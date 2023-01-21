@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
+import { useAuth } from '@/contexts/AuthContext';
 import { withAuth } from '@/hoc/withAuth';
 import { useFlights } from '@/hooks/useFlights';
 import { Button, Divider, Flex, FormControl, FormLabel, Heading, HStack, Input, PinInput, PinInputField, Select, useToast } from '@chakra-ui/react';
@@ -7,6 +8,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 const Add = () => {
+  const { currentUser } = useAuth();
+  const airlineCode = currentUser!.uid; // Use the user's UID for airline code
   const { addFlight } = useFlights();
   const toast = useToast();
   const [flightPrefix, setFlightPrefix] = useState<string>();
@@ -28,7 +31,7 @@ const Add = () => {
     const finalScheduledBoardingTime = new Date(scheduledDepartureTime);
     finalScheduledBoardingTime.setMinutes(scheduledDepartureTime.getMinutes() - scheduledBoardingTimePrior);
 
-    addFlight(finalFlightNumber, destination, scheduledDepartureTime, finalScheduledBoardingTime, gate)
+    addFlight(airlineCode, finalFlightNumber, destination, scheduledDepartureTime, finalScheduledBoardingTime, gate)
       .then(() => {
         toast({ title: 'Flight added successfully.', description: 'The flight has successfully been added to the system', status: 'success', variant: 'left-accent', isClosable: true });
         return true;

@@ -5,7 +5,8 @@ import { LogoIcon } from './LogoIcon';
 
 export const Navbar = () => {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const airlineCode = currentUser!.uid; // Use the user's UID for airline code
 
   return (
     <Flex justifyContent="space-between" alignItems="center" w="full" bg="jet.500" px={{ base: '2', sm: '12', md: '20', lg: '48' }} py="2" gap="4" wrap="wrap">
@@ -22,7 +23,7 @@ export const Navbar = () => {
         </Button>
       </Flex>
       <Flex alignItems="center" gap="4">
-        <Button variant="solid" onClick={() => window.open('/viewer')}>
+        <Button variant="solid" onClick={() => window.open('/viewer?ac=' + airlineCode)}>
           Viewer
         </Button>
         <Button colorScheme="jet" onClick={logout}>

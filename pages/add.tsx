@@ -17,13 +17,6 @@ const Add = () => {
   const [gate, setGate] = useState<number>();
 
   const handleAddFlight = () => {
-    console.log(flightPrefix);
-    console.log(flightNumber);
-    console.log(destination);
-    console.log(scheduledDepartureTime);
-    console.log(scheduledBoardingTimePrior);
-    console.log(gate);
-
     if (!flightPrefix || !flightNumber || !destination || !scheduledDepartureTime || !scheduledBoardingTimePrior || !gate) {
       toast({ title: 'Error adding flight.', description: 'You need to have a value in every input.', status: 'error', variant: 'left-accent', isClosable: true });
       return false;

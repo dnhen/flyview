@@ -1,5 +1,6 @@
 import { viewerWidths } from '@/pages/viewer';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Clock } from '../Clock';
 
 export const ViewerHeader = () => {
   return (
@@ -11,9 +12,7 @@ export const ViewerHeader = () => {
         <Text fontSize="7xl" color="white" lineHeight="1" w="60%" textAlign="center">
           Departures
         </Text>
-        <Text fontSize="5xl" color="white" lineHeight="1" w="20%" textAlign="right">
-          20:28
-        </Text>
+        <Clock />
       </Flex>
       <Flex gap="8" w="full" bg="#DD0000">
         <Text fontSize="5xl" color="white" w={viewerWidths.flight / 100}>

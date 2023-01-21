@@ -1,5 +1,5 @@
 import { db } from '@/firebaseConfig';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export const useFlights = () => {
@@ -45,18 +45,13 @@ export const useFlights = () => {
 };
 
 interface IFirestoreFlightDocument {
-  actualBoardingTime: IFirestoreTimestamp;
-  actualDepartureTime: IFirestoreTimestamp;
-  created: IFirestoreTimestamp;
+  actualBoardingTime: Timestamp;
+  actualDepartureTime: Timestamp;
+  created: Timestamp;
   destination: string;
   flightNumber: string;
   gate: number;
   remark: string;
-  scheduledBoardingTime: IFirestoreTimestamp;
-  scheduledDepartureTime: IFirestoreTimestamp;
-}
-
-interface IFirestoreTimestamp {
-  seconds: number;
-  nanoseconds: number;
+  scheduledBoardingTime: Timestamp;
+  scheduledDepartureTime: Timestamp;
 }

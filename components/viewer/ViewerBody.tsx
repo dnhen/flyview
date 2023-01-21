@@ -1,14 +1,33 @@
 import { useFlights } from '@/hooks/useFlights';
 import { viewerWidths } from '@/pages/viewer';
 import { Box, Flex, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+
+const MINUTES_AFTER_DEP_TO_DISPLAY = 60 * 60;
 
 export const ViewerBody = () => {
   const { flights } = useFlights();
+  const [ticker, setTicker] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTicker(ticker + 1);
+    }, 50000);
+
+    return () => clearInterval(interval);
+  });
 
   const flightsViewerRenderer = () => {
     return flights.map((flight, i) => {
-      const departureTimeDate = new Date(flight.scheduledDepartureTime.seconds * 1000);
-      const boardingTimeDate = new Date(flight.scheduledBoardingTime.seconds * 1000);
+      const departureTimeDate = flight.actualDepartureTime.toDate();
+      const boardingTimeDate = flight.actualBoardingTime.toDate();
+      const timeBeforeToViewFlight = new Date();
+      timeBeforeToViewFlight.setMinutes(timeBeforeToViewFlight.getMinutes() - MINUTES_AFTER_DEP_TO_DISPLAY);
+
+      if (departureTimeDate < timeBeforeToViewFlight) {
+        return;
+      }
+
       return (
         <Flex key={i} gap="8" w="full" h="72px" px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
           <Text fontSize="5xl" color="white" w={viewerWidths.flight / 100}>

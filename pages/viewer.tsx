@@ -19,10 +19,10 @@ const Viewer = () => {
 export default Viewer;
 
 export const viewerWidths = {
-  flight: 14,
+  flight: 15,
   destination: 28,
   sched: 10,
   board: 10,
   gate: 8,
-  remark: 30
+  remark: 29
 };

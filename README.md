@@ -1,4 +1,4 @@
-![fullLogo](https://user-images.githubusercontent.com/69449713/213912081-2a67d5f2-8c74-49ee-8cdd-7faca1e2e7a3.png | width=100)
+![fullLogo](https://user-images.githubusercontent.com/69449713/213912081-2a67d5f2-8c74-49ee-8cdd-7faca1e2e7a3.png)
 # flyview - Flight Information Display System
 
 Simple and effective flight information display system for use at airports, displaying a live and up-to-date departure board, customisable for your airline needs.

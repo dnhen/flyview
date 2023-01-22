@@ -1,7 +1,11 @@
 import { Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-export const Clock = () => {
+interface ClockProps {
+  textColor?: string;
+}
+
+export const Clock = ({ textColor = '#FFFFFF' }: ClockProps) => {
   const [hours, setHours] = useState<string>('--');
   const [minutes, setMinutes] = useState<string>('--');
 
@@ -18,7 +22,7 @@ export const Clock = () => {
   });
 
   return (
-    <Text fontSize="5xl" color="white" lineHeight="1" w="20%" textAlign="right">
+    <Text fontSize="5xl" color={textColor} lineHeight="1" w="20%" textAlign="right">
       {`${hours}:${minutes}`}
     </Text>
   );

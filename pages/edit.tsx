@@ -1,16 +1,13 @@
+import { FlightTable } from '@/components/edit/FlightTable';
 import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
-import { useAuth } from '@/contexts/AuthContext';
 import { withAuth } from '@/hoc/withAuth';
-import { useFlights } from '@/hooks/useFlights';
-import { Divider, Editable, EditableInput, EditablePreview, Heading, HStack, PinInput, PinInputField, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Divider, FormControl, FormLabel, Heading } from '@chakra-ui/react';
 import Head from 'next/head';
-import { MINUTES_AFTER_DEP_TO_DISPLAY } from './viewer';
+import { useState } from 'react';
 
 const Edit = () => {
-  const { currentUser } = useAuth();
-  const airlineCode = currentUser!.uid; // Use the user's UID for airline code
-  const { flights, updateFlight } = useFlights(airlineCode);
+  const [editDate, setEditDate] = useState<Date>(new Date(new Date().setHours(0, 0, 0, 0)));
 
   return (
     <>
@@ -22,76 +19,13 @@ const Edit = () => {
       </Head>
       <Navbar />
       <StandardPage>
-        <Heading>Edit Flight</Heading>
+        <Heading mb="2">Edit Flight</Heading>
         <Divider />
-        <Table variant="striped">
-          <Thead>
-            <Tr>
-              <Th>Flight Number</Th>
-              <Th>Destination</Th>
-              <Th>Departure Time</Th>
-              <Th>Boarding Time</Th>
-              <Th>Gate</Th>
-              <Th>Remark</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {flights.map((flight, i) => {
-              const timezoneOffset = new Date().getTimezoneOffset() * 60000;
-              const departureTimeDate = flight.data.actualDepartureTime.toDate();
-              const boardingTimeDate = flight.data.actualBoardingTime.toDate();
-              const timeBeforeToViewFlight = new Date();
-              timeBeforeToViewFlight.setMinutes(timeBeforeToViewFlight.getMinutes() - MINUTES_AFTER_DEP_TO_DISPLAY);
-              const noLongerVisible = departureTimeDate < timeBeforeToViewFlight;
-
-              return (
-                <Tr key={i} maxH="2" borderX="4px" borderColor={noLongerVisible ? 'red.600' : 'green.600'}>
-                  <Td>
-                    <Editable placeholder={flight.data.flightNumber} defaultValue={flight.data.flightNumber} onSubmit={(newValue) => newValue && updateFlight(flight.ref, { flightNumber: newValue })}>
-                      <EditablePreview />
-                      <EditableInput />
-                    </Editable>
-                  </Td>
-                  <Td>
-                    <Editable placeholder={flight.data.destination} defaultValue={flight.data.destination} onSubmit={(newValue) => newValue && updateFlight(flight.ref, { destination: newValue })}>
-                      <EditablePreview />
-                      <EditableInput />
-                    </Editable>
-                  </Td>
-                  <Td>
-                    <input
-                      value={new Date(flight.data.actualDepartureTime.toDate() - timezoneOffset).toISOString().slice(0, 19)}
-                      type="datetime-local"
-                      onChange={(e) => e.target.value && updateFlight(flight.ref, { actualDepartureTime: new Date(e.target.value) })}
-                    />
-                  </Td>
-                  <Td>
-                    <input
-                      value={new Date(flight.data.actualBoardingTime.toDate() - timezoneOffset).toISOString().slice(0, 19)}
-                      type="datetime-local"
-                      onChange={(e) => e.target.value && updateFlight(flight.ref, { actualBoardingTime: new Date(e.target.value) })}
-                    />
-                  </Td>
-                  <Td>
-                    <HStack>
-                      <PinInput defaultValue={flight.data.gate.toString()} onChange={(newValue) => newValue && updateFlight(flight.ref, { gate: parseInt(newValue) })}>
-                        <PinInputField />
-                        <PinInputField />
-                        <PinInputField />
-                      </PinInput>
-                    </HStack>
-                  </Td>
-                  <Td>
-                    <Editable placeholder="empty" defaultValue={flight.data.remark} onSubmit={(newValue) => updateFlight(flight.ref, { remark: newValue })}>
-                      <EditablePreview />
-                      <EditableInput />
-                    </Editable>
-                  </Td>
-                </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
+        <FormControl>
+          <FormLabel>Flights Date</FormLabel>
+          <input type="date" onChange={(e) => setEditDate(new Date(new Date(e.target.value).setHours(0, 0, 0, 0)))} />
+        </FormControl>
+        <FlightTable isEditable={true} displayDateStart={editDate} displayDateEnd={new Date(new Date(editDate).setHours(24, 0, 0, 0))} />
       </StandardPage>
     </>
   );

@@ -1,13 +1,17 @@
 import { db } from '@/firebaseConfig';
-import { addDoc, collection, DocumentData, DocumentReference, onSnapshot, orderBy, query, serverTimestamp, Timestamp, updateDoc, where } from 'firebase/firestore';
+import { addDoc, collection, DocumentData, DocumentReference, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export const useFlights = (airlineCode: string = '') => {
   const [flights, setFlights] = useState<IFirestoreFlightDocument[]>([]);
 
   useEffect(() => {
+    const pastMidnight = new Date();
+    pastMidnight.setHours(0, 0, 0, 0); // Get the first midnight in the past (start of current day)
+    const nextMidnight = new Date();
+    nextMidnight.setHours(24, 0, 0, 0); // Get the first midnight in the future (end of current day)
     const flightsRef = collection(db, 'flights');
-    const q = query(flightsRef, where('airlineCode', '==', airlineCode), orderBy('scheduledDepartureTime'));
+    const q = query(flightsRef, where('airlineCode', '==', airlineCode), where('actualDepartureTime', '>', pastMidnight), where('actualDepartureTime', '<', nextMidnight), orderBy('actualDepartureTime'), orderBy('scheduledDepartureTime'));
     onSnapshot(q, (snapshot) => {
       setFlights(
         snapshot.docs.map((doc) => ({
@@ -45,6 +49,13 @@ export const useFlights = (airlineCode: string = '') => {
     });
   };
 
+  /***
+   * Update a flight in the firestore database
+   *
+   * @param {DocumentReference} docRef the reference to the flight document to update
+   * @param {object} newValues the new values to store in the document
+   * @return a promise resolving once the data is successfully written
+   */
   const updateFlight = (docRef: DocumentReference, newValues: {}) => {
     return updateDoc(docRef, newValues);
   };
@@ -59,16 +70,4 @@ export const useFlights = (airlineCode: string = '') => {
 export interface IFirestoreFlightDocument {
   ref: DocumentReference;
   data: DocumentData;
-}
-
-interface IFirestoreFlightData {
-  actualBoardingTime: Timestamp;
-  actualDepartureTime: Timestamp;
-  created: Timestamp;
-  destination: string;
-  flightNumber: string;
-  gate: number;
-  remark: string;
-  scheduledBoardingTime: Timestamp;
-  scheduledDepartureTime: Timestamp;
 }

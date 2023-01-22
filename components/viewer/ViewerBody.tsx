@@ -48,7 +48,7 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
             <Text fontSize="5xl" color="white" w={viewerWidths.gate / 100}>
               {flight.data.gate}
             </Text>
-            <Text fontSize="5xl" color="yellow.300" w={viewerWidths.remark / 100}>
+            <Text fontSize="5xl" color="yellow.300" w={viewerWidths.remark / 100} decoration="blink">
               {flight.data.remark.toUpperCase()}
             </Text>
           </Flex>

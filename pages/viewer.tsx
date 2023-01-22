@@ -1,7 +1,9 @@
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { LogoIcon } from '@/components/LogoIcon';
 import { StandardPage } from '@/components/StandardPage';
 import { ViewerBody } from '@/components/viewer/ViewerBody';
 import { ViewerHeader } from '@/components/viewer/ViewerHeader';
+import { useAirline } from '@/hooks/useAirline';
 import { useFlights } from '@/hooks/useFlights';
 import { Button, Divider, FormControl, FormLabel, Heading, Icon, Input } from '@chakra-ui/react';
 import Head from 'next/head';
@@ -13,8 +15,13 @@ export const MINUTES_AFTER_DEP_TO_DISPLAY = 60;
 const Viewer = () => {
   const router = useRouter();
   const { ac } = router.query;
-  const { flights } = useFlights(ac as string);
   const [inputAirlineCode, setInputAirlineCode] = useState<string>();
+  const { flights } = useFlights(ac as string);
+  const { airlineData } = useAirline(ac as string);
+
+  if (!airlineData) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -38,7 +45,7 @@ const Viewer = () => {
         </StandardPage>
       ) : (
         <>
-          <ViewerHeader />
+          <ViewerHeader logo={airlineData.logo} headerColor={airlineData.headerColor} textColor={airlineData.textColor} />
           <ViewerBody flights={flights} />
         </>
       )}

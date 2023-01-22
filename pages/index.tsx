@@ -35,6 +35,11 @@ const Home = () => {
               <Text fontSize="2xl">Airline Configuration</Text>
               <Divider />
               <FormControl mb="4">
+                <FormLabel>Airline Code</FormLabel>
+                <Text>{airlineCode}</Text>
+              </FormControl>
+              <Divider />
+              <FormControl mb="4">
                 <FormLabel>Airline Name</FormLabel>
                 <Input defaultValue={airlineData?.name} placeholder="Name" onChange={(e) => updateAirline({ name: e.target.value })} />
               </FormControl>

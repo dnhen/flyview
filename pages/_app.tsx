@@ -9,6 +9,7 @@ import Script from 'next/script';
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-78VX14HL8E`} />
       <Script
         id="google-analytics"
         strategy="afterInteractive"

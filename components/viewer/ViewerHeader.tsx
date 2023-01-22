@@ -3,17 +3,18 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { Clock } from '../Clock';
 
 interface ViewerHeaderProps {
+  airlineName: string | undefined;
   logo: string | undefined;
   headerColor: string | undefined;
   textColor: string | undefined;
 }
 
-export const ViewerHeader = ({ logo, headerColor, textColor }: ViewerHeaderProps) => {
+export const ViewerHeader = ({ airlineName, logo, headerColor, textColor }: ViewerHeaderProps) => {
   return (
     <Box w="full" bg={headerColor} px="8">
       <Flex justifyContent="space-between" alignItems="center" gap="8" w="full">
         <Box w="20%">
-          <Image src={logo} h="60px" />
+          <Image alt={airlineName} src={logo} h="60px" />
         </Box>
         <Text fontSize="7xl" color={textColor} lineHeight="1" w="60%" textAlign="center">
           Departures

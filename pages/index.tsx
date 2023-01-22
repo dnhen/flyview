@@ -54,7 +54,7 @@ const Home = () => {
           </Flex>
           <Flex flexDir="column" w={{ base: '100%', lg: '50%' }}>
             <ContentCard>
-              <Text fontSize="2xl">Today's Flights</Text>
+              <Text fontSize="2xl">Today&apos;s Flights</Text>
               <Divider />
               <FlightTable />
             </ContentCard>

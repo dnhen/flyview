@@ -45,7 +45,7 @@ const Viewer = () => {
         </StandardPage>
       ) : (
         <>
-          <ViewerHeader logo={airlineData.logo} headerColor={airlineData.headerColor} textColor={airlineData.textColor} />
+          <ViewerHeader airlineName={airlineData.name} logo={airlineData.logo} headerColor={airlineData.headerColor} textColor={airlineData.textColor} />
           <ViewerBody flights={flights} />
         </>
       )}

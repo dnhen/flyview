@@ -21,7 +21,7 @@ export const ViewerHeader = ({ airlineName, logo, headerColor, textColor }: View
         </Text>
         <Clock textColor={textColor} textStyle="viewerHeader" />
       </Flex>
-      <Flex gap="8" w="full" bg={headerColor}>
+      <Flex gap={{ base: '2', sm: '4', md: '6', lg: '8' }} w="full" bg={headerColor}>
         <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.flight / 100}>
           Flight
         </Text>

@@ -32,7 +32,7 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
         }
 
         return (
-          <Flex key={i} alignItems="center" gap="8" w="full" h={{ base: '40px', sm: '40px', md: '60px', lg: '72px' }} px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
+          <Flex key={i} alignItems="center" gap={{ base: '2', sm: '4', md: '6', lg: '8' }} w="full" h={{ base: '40px', sm: '40px', md: '60px', lg: '72px' }} px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
             <Text textStyle="viewerBody" color="white" w={viewerWidths.flight / 100}>
               {flight.data.flightNumber}
             </Text>

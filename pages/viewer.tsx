@@ -1,4 +1,3 @@
-import { LoadingScreen } from '@/components/LoadingScreen';
 import { LogoIcon } from '@/components/LogoIcon';
 import { StandardPage } from '@/components/StandardPage';
 import { ViewerBody } from '@/components/viewer/ViewerBody';
@@ -18,10 +17,6 @@ const Viewer = () => {
   const [inputAirlineCode, setInputAirlineCode] = useState<string>();
   const { flights } = useFlights(ac as string);
   const { airlineData } = useAirline(ac as string);
-
-  if (!airlineData) {
-    return <LoadingScreen />;
-  }
 
   return (
     <>
@@ -45,7 +40,7 @@ const Viewer = () => {
         </StandardPage>
       ) : (
         <>
-          <ViewerHeader airlineName={airlineData.name} logo={airlineData.logo} headerColor={airlineData.headerColor} textColor={airlineData.textColor} />
+          <ViewerHeader airlineName={airlineData?.name || 'Unnamed'} logo={airlineData?.logo || 'https://via.placeholder.com/728x143'} headerColor={airlineData?.headerColor || '#2A272A'} textColor={airlineData?.textColor || '#FFFFFF'} />
           <ViewerBody flights={flights} />
         </>
       )}

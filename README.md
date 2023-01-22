@@ -1,3 +1,4 @@
+![image](https://user-images.githubusercontent.com/69449713/213903654-71f9e5a1-9f0f-47f2-ac7c-f73da053c5d7.png)
 # Flight Information Display System
 
 Simple and effective flight information display system for use at airports, displaying a live and up-to-date departure board, customisable for your airline needs.
@@ -8,7 +9,7 @@ https://flight-information-display.vercel.app/
 
 ## How to setup an airline?
 1. Visit https://flight-information-display.vercel.app/ and you will be directed to the login page. Your login is your airline.
-	![image](https://user-images.githubusercontent.com/69449713/213902738-a86fe3be-a173-4ace-bfb9-e189c0cf1614.png)
+![image](https://user-images.githubusercontent.com/69449713/213902738-a86fe3be-a173-4ace-bfb9-e189c0cf1614.png)
 
 2. Once you have logged in, you will be met with the home page.
 ![image](https://user-images.githubusercontent.com/69449713/213903546-4a251951-980e-4a75-9052-fdffc205e8d4.png)

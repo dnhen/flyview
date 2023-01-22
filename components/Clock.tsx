@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 
 interface ClockProps {
   textColor?: string;
+  textStyle: string;
 }
 
-export const Clock = ({ textColor = '#FFFFFF' }: ClockProps) => {
+export const Clock = ({ textColor = '#FFFFFF', textStyle }: ClockProps) => {
   const [hours, setHours] = useState<string>('--');
   const [minutes, setMinutes] = useState<string>('--');
 
@@ -22,7 +23,7 @@ export const Clock = ({ textColor = '#FFFFFF' }: ClockProps) => {
   });
 
   return (
-    <Text fontSize="5xl" color={textColor} lineHeight="1" w="20%" textAlign="right">
+    <Text textStyle={textStyle} color={textColor} lineHeight="1" w="20%" textAlign="right">
       {`${hours}:${minutes}`}
     </Text>
   );

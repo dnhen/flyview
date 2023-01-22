@@ -32,23 +32,23 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
         }
 
         return (
-          <Flex key={i} gap="8" w="full" h="72px" px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
-            <Text fontSize="5xl" color="white" w={viewerWidths.flight / 100}>
+          <Flex key={i} alignItems="center" gap="8" w="full" h={{ base: '40px', sm: '40px', md: '60px', lg: '72px' }} px="8" bg="gray.900" _even={{ bg: 'gray.600' }}>
+            <Text textStyle="viewerBody" color="white" w={viewerWidths.flight / 100}>
               {flight.data.flightNumber}
             </Text>
-            <Text fontSize="5xl" color="white" w={viewerWidths.destination / 100}>
+            <Text textStyle="viewerBody" color="white" w={viewerWidths.destination / 100}>
               {flight.data.destination}
             </Text>
-            <Text fontSize="5xl" color="white" w={viewerWidths.sched / 100}>
+            <Text textStyle="viewerBody" color="white" w={viewerWidths.sched / 100}>
               {`${('0' + departureTimeDate.getHours()).slice(-2)}:${('0' + departureTimeDate.getMinutes()).slice(-2)}`}
             </Text>
-            <Text fontSize="5xl" color="white" w={viewerWidths.board / 100}>
+            <Text textStyle="viewerBody" color="white" w={viewerWidths.board / 100}>
               {`${('0' + boardingTimeDate.getHours()).slice(-2)}:${('0' + boardingTimeDate.getMinutes()).slice(-2)}`}
             </Text>
-            <Text fontSize="5xl" color="white" w={viewerWidths.gate / 100}>
+            <Text textStyle="viewerBody" color="white" w={viewerWidths.gate / 100}>
               {flight.data.gate}
             </Text>
-            <Text fontSize="5xl" color="yellow.300" w={viewerWidths.remark / 100} decoration="blink">
+            <Text textStyle="viewerBody" color="yellow.300" w={viewerWidths.remark / 100} decoration="blink">
               {flight.data.remark.toUpperCase()}
             </Text>
           </Flex>

@@ -14,30 +14,30 @@ export const ViewerHeader = ({ airlineName, logo, headerColor, textColor }: View
     <Box w="full" bg={headerColor} px="8">
       <Flex justifyContent="space-between" alignItems="center" gap="8" w="full">
         <Box w="20%">
-          <Image alt={airlineName} src={logo} h="60px" />
+          <Image alt={airlineName} src={logo} h={{ base: '12px', sm: '14px', md: '24px', lg: '40px', xl: '60px' }} />
         </Box>
-        <Text fontSize="7xl" color={textColor} lineHeight="1" w="60%" textAlign="center">
+        <Text textStyle="viewerHeaderTitle" color={textColor} lineHeight="1" w="60%" textAlign="center">
           Departures
         </Text>
-        <Clock textColor={textColor} />
+        <Clock textColor={textColor} textStyle="viewerHeader" />
       </Flex>
       <Flex gap="8" w="full" bg={headerColor}>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.flight / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.flight / 100}>
           Flight
         </Text>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.destination / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.destination / 100}>
           Destination
         </Text>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.sched / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.sched / 100}>
           Sched
         </Text>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.board / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.board / 100}>
           Board
         </Text>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.gate / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.gate / 100}>
           Gate
         </Text>
-        <Text fontSize="5xl" color={textColor} w={viewerWidths.remark / 100}>
+        <Text textStyle="viewerHeader" color={textColor} w={viewerWidths.remark / 100}>
           Remark
         </Text>
       </Flex>

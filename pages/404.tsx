@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>404 // Flight Information Display</title>
-        <meta name="description" content="404 // Flight Information Display" />
+        <title>404 | flyview</title>
+        <meta name="description" content="404 | flyview" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="noindex" />
       </Head>

@@ -21,8 +21,8 @@ const Viewer = () => {
   return (
     <>
       <Head>
-        <title>Viewer // Flight Information Display</title>
-        <meta name="description" content="Viewer // Flight Information Display" />
+        <title>Viewer | flyview</title>
+        <meta name="description" content="Viewer | flyview" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {!ac ? (

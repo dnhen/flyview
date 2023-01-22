@@ -10,7 +10,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <AuthProvider>
       {/* Google tag (gtag.js) */}
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-78VX14HL8E`} />
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-QP4F79ZETM`} />
       <Script
         id="google-analytics"
         strategy="afterInteractive"
@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           
-            gtag('config', 'G-78VX14HL8E');
+            gtag('config', 'G-QP4F79ZETM');
           `
         }}
       />

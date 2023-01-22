@@ -2,7 +2,7 @@ import { FlightTable } from '@/components/edit/FlightTable';
 import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
 import { withAuth } from '@/hoc/withAuth';
-import { Divider, Heading } from '@chakra-ui/react';
+import { Card, CardBody, Divider, Heading } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useState } from 'react';
 
@@ -12,10 +12,9 @@ const Edit = () => {
   return (
     <>
       <Head>
-        <title>Edit Flight // Flight Information Display</title>
-        <meta name="description" content="Edit Flight // Flight Information Display" />
+        <title>Edit Flight | flyview</title>
+        <meta name="description" content="Edit Flight | flyview" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="robots" content="noindex" />
       </Head>
       <Navbar />
       <StandardPage>
@@ -27,7 +26,11 @@ const Edit = () => {
           <input type="date" onChange={(e) => setEditDate(new Date(new Date(e.target.value).setHours(0, 0, 0, 0)))} />
         </FormControl>
         {*/}
-        <FlightTable isEditable={true} displayDateStart={editDate} displayDateEnd={new Date(new Date(editDate).setHours(24, 0, 0, 0))} />
+        <Card>
+          <CardBody overflowX="auto">
+            <FlightTable isEditable={true} displayDateStart={editDate} displayDateEnd={new Date(new Date(editDate).setHours(24, 0, 0, 0))} />
+          </CardBody>
+        </Card>
       </StandardPage>
     </>
   );

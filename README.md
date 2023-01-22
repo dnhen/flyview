@@ -1,3 +1,4 @@
+![image](https://user-images.githubusercontent.com/69449713/213903654-71f9e5a1-9f0f-47f2-ac7c-f73da053c5d7.png)
 # Flight Information Display System
 
 Simple and effective flight information display system for use at airports, displaying a live and up-to-date departure board, customisable for your airline needs.

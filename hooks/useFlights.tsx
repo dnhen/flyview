@@ -1,5 +1,5 @@
 import { db } from '@/firebaseConfig';
-import { addDoc, collection, DocumentData, DocumentReference, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, DocumentData, DocumentReference, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export const useFlights = (airlineCode: string = '') => {
@@ -10,8 +10,10 @@ export const useFlights = (airlineCode: string = '') => {
     pastMidnight.setHours(0, 0, 0, 0); // Get the first midnight in the past (start of current day)
     const nextMidnight = new Date();
     nextMidnight.setHours(24, 0, 0, 0); // Get the first midnight in the future (end of current day)
+
     const flightsRef = collection(db, 'flights');
     const q = query(flightsRef, where('airlineCode', '==', airlineCode), where('actualDepartureTime', '>', pastMidnight), where('actualDepartureTime', '<', nextMidnight), orderBy('actualDepartureTime'), orderBy('scheduledDepartureTime'));
+
     onSnapshot(q, (snapshot) => {
       setFlights(
         snapshot.docs.map((doc) => ({
@@ -60,10 +62,21 @@ export const useFlights = (airlineCode: string = '') => {
     return updateDoc(docRef, newValues);
   };
 
+  /***
+   * Delete a flight in the firestore database
+   *
+   * @param {DocumentReference} docRef the reference to the flight document to delete
+   * @return a promise resolving once the data is successfully deleted
+   */
+  const deleteFlight = (docRef: DocumentReference) => {
+    return deleteDoc(docRef);
+  };
+
   return {
     flights,
     addFlight,
-    updateFlight
+    updateFlight,
+    deleteFlight
   };
 };
 

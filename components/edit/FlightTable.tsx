@@ -1,7 +1,8 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useFlights } from '@/hooks/useFlights';
 import { MINUTES_AFTER_DEP_TO_DISPLAY } from '@/pages/viewer';
-import { Editable, EditableInput, EditablePreview, HStack, PinInput, PinInputField, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Editable, EditableInput, EditablePreview, HStack, IconButton, PinInput, PinInputField, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { FaTrash } from 'react-icons/fa';
 
 interface FlightTableProps {
   isEditable?: boolean;
@@ -12,7 +13,7 @@ interface FlightTableProps {
 export const FlightTable = ({ isEditable = false }: FlightTableProps) => {
   const { currentUser } = useAuth();
   const airlineCode = currentUser!.uid; // Use the user's UID for airline code; TODO: update this to not be UID
-  const { flights, updateFlight } = useFlights(airlineCode);
+  const { flights, updateFlight, deleteFlight } = useFlights(airlineCode);
 
   return (
     <Table variant="striped">
@@ -24,6 +25,7 @@ export const FlightTable = ({ isEditable = false }: FlightTableProps) => {
           <Th>Boarding Time</Th>
           <Th>Gate</Th>
           <Th>Remark</Th>
+          {isEditable && <Th>Actions</Th>}
         </Tr>
       </Thead>
       <Tbody>
@@ -79,6 +81,11 @@ export const FlightTable = ({ isEditable = false }: FlightTableProps) => {
                   <EditableInput />
                 </Editable>
               </Td>
+              {isEditable && (
+                <Td>
+                  <IconButton aria-label={'delete'} icon={<FaTrash />} border="1px" borderColor="red.600" color="red.600" onClick={() => deleteFlight(flight.ref)} />
+                </Td>
+              )}
             </Tr>
           );
         })}

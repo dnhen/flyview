@@ -3,7 +3,7 @@ import { FlightTable } from '@/components/edit/FlightTable';
 import { Navbar } from '@/components/Navbar';
 import { StandardPage } from '@/components/StandardPage';
 import { withAuth } from '@/hoc/withAuth';
-import { Card, CardBody, Divider, Flex, Heading } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 
 const Add = () => {
@@ -19,15 +19,18 @@ const Add = () => {
         <Heading>Add Flight</Heading>
         <Divider />
         <Flex gap="6" wrap={{ base: 'wrap', lg: 'nowrap' }}>
-          <Flex w={{ base: '100%', lg: '50%' }}>
-            <Card w="full">
+          <Flex flexDir="column" w={{ base: '100%', lg: '50%' }}>
+            <Card>
               <CardBody>
                 <AddFlight />
               </CardBody>
             </Card>
           </Flex>
-          <Flex w={{ base: '100%', lg: '50%' }}>
-            <Card w="full">
+          <Flex flexDir="column" w={{ base: '100%', lg: '50%' }}>
+            <Card>
+              <CardHeader>
+                <Text fontSize="2xl">Today&apos;s Flights</Text>
+              </CardHeader>
               <CardBody overflowX="auto">
                 <FlightTable />
               </CardBody>

@@ -1,6 +1,6 @@
 import { IFirestoreFlightDocument } from '@/hooks/useFlights';
 import { MINUTES_AFTER_DEP_TO_DISPLAY, viewerWidths } from '@/pages/viewer';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, keyframes, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 interface ViewerBodyProps {
@@ -9,6 +9,7 @@ interface ViewerBodyProps {
 
 export const ViewerBody = ({ flights }: ViewerBodyProps) => {
   const [ticker, setTicker] = useState<number>(0);
+  const blinkAnimation = `${blink} 3s infinite`;
 
   useEffect(() => {
     // To update state every 5 minutes and remove old flights
@@ -18,6 +19,16 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
 
     return () => clearInterval(interval);
   });
+
+  const animationPicker = (remark: string) => {
+    switch (remark) {
+      case 'BOARDING':
+      case 'FINAL CALL':
+        return blinkAnimation;
+      default:
+        return '';
+    }
+  };
 
   return (
     <Box h="calc(100vh - 144px)" overflowY="hidden">
@@ -48,7 +59,7 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
             <Text textStyle="viewerBody" color="white" w={viewerWidths.gate / 100}>
               {flight.data.gate}
             </Text>
-            <Text textStyle="viewerBody" color="yellow.300" w={viewerWidths.remark / 100} decoration="blink">
+            <Text textStyle="viewerBody" color="yellow.300" w={viewerWidths.remark / 100} animation={animationPicker(flight.data.remark.toUpperCase())}>
               {flight.data.remark.toUpperCase()}
             </Text>
           </Flex>
@@ -81,3 +92,11 @@ export const ViewerBody = ({ flights }: ViewerBodyProps) => {
     </Box>
   );
 };
+
+const blink = keyframes`
+  0% { opacity: 0.0; }
+  25% { opacity: 1.0; }
+  50% { opacity: 1.0; }
+  75% { opacity: 1.0; }
+  100% { opacity: 0.0; }
+`;

@@ -27,7 +27,7 @@ const Login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Flex flexDir="column" w="100vw" h={{ base: 'full', lg: '100vh' }} alignItems="center" justifyContent="center" gap="8" p="8">
-        <Image src="https://user-images.githubusercontent.com/69449713/213912081-2a67d5f2-8c74-49ee-8cdd-7faca1e2e7a3.png" w={{ base: '80%', lg: '25vw' }} />
+        <Image alt="flyview" src="https://user-images.githubusercontent.com/69449713/213912081-2a67d5f2-8c74-49ee-8cdd-7faca1e2e7a3.png" w={{ base: '80%', lg: '25vw' }} />
         <Card>
           <CardBody p="0">
             <Flex gap="4" flexWrap={{ base: 'wrap', lg: 'nowrap' }}>

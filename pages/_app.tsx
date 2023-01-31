@@ -3,10 +3,19 @@ import '@/styles/globals.css';
 import { theme } from '@/theme';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/kanit';
+import { usePostHog } from 'next-use-posthog';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  // PostHog
+  usePostHog('phc_LuTJIAfmwSM7izS6tqF854glPXbhpRXAdZkwjxxe46C', {
+    api_host: 'https://app.posthog.com',
+    loaded: (posthog) => {
+      if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing();
+    }
+  });
+
   return (
     <AuthProvider>
       {/* Google tag (gtag.js) */}

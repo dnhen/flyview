@@ -22,6 +22,8 @@
     "firebase": "^9.15.0",
     "framer-motion": "^8.4.7",
     "next": "13.1.2",
+    "next-use-posthog": "^1.16.4",
+    "posthog-js": "^1.42.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",

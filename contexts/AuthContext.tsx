@@ -1,5 +1,6 @@
 import { auth } from '@/firebaseConfig';
 import { GoogleAuthProvider, signInWithPopup, signOut, User, UserCredential } from 'firebase/auth';
+import posthog from 'posthog-js';
 import { createContext, SetStateAction, useContext, useEffect, useState } from 'react';
 
 interface AuthContextInterface {
@@ -40,6 +41,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (user) {
         setIsAuthLoading(true);
         setCurrentUser(user);
+
+        // @ts-expect-error
+        posthog.identify(user.uid);
+        posthog.capture('set user props on login', {
+          // @ts-expect-error
+          $set: { email: user.email }
+        });
+
         setIsAuthLoading(false);
       } else {
         setCurrentUser(null);

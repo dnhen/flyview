@@ -3,7 +3,7 @@
 
 Simple and effective flight information display system for use at airports, displaying a live and up-to-date departure board, customisable for your airline needs.
 
-https://flyview.dnhen.com
+https://flyview.dnhen.com/
 
 ![image](https://user-images.githubusercontent.com/69449713/213912227-a1af0387-b492-4768-a3d6-1c34636b32b2.png)
 

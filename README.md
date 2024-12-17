@@ -8,7 +8,7 @@ https://flyview.dnhen.com/
 ![image](https://user-images.githubusercontent.com/69449713/213912227-a1af0387-b492-4768-a3d6-1c34636b32b2.png)
 
 ## How to setup an airline?
-1. Visit https://flyview.vercel.app/ and you will be directed to the login page. Your login is your airline.
+1. Visit https://flyview.dnhen.com/ and you will be directed to the login page. Your login is your airline.
 ![image](https://user-images.githubusercontent.com/69449713/213912212-627e7a23-7de2-4c0b-8f6f-c56d3f5945dc.png)
 
 2. Once you have logged in, you will be met with the home page.
@@ -23,7 +23,7 @@ https://flyview.dnhen.com/
 **Text Color:** The color of the text at the top of the viewer (FID).
 
 ## How add a flight?
-1.  Visit https://flyview.vercel.app/add or click "Add Flight" at the top of the page.
+1.  Visit https://flyview.dnhen.com/add or click "Add Flight" at the top of the page.
 
 2. You will be met with the add flight page.
 ![image](https://user-images.githubusercontent.com/69449713/213912241-2d9aafad-1978-48b7-ac96-f0fb13d4501d.png)
@@ -37,7 +37,7 @@ https://flyview.dnhen.com/
 Note:  The flight viewer (FID) on the home page and the add flight page will only display the flights that are scheduled to depart on that day.
 
 ## How do I edit flights?
-1. Navigate to https://flyview.vercel.app/edit or click "Edit Flight" at the top of the page.
+1. Navigate to https://flyview.dnhen.com/edit or click "Edit Flight" at the top of the page.
 
 2. You will be met with the edit flight page.
 ![image](https://user-images.githubusercontent.com/69449713/213912252-73bc425e-b789-4572-927b-81cc792bf913.png)
@@ -53,7 +53,7 @@ Note: The colours on the left and right of each flight row have meaning. The red
 Note: if you copy the link in the URL, you can share this with friends and they will be able to view the live FID for your airline.
 
 **If you are logged out:**
-1. Navigate to https://flyview.vercel.app/viewer.
+1. Navigate to https://flyview.dnhen.com/viewer.
 
 2. You will be met with the viewer input page.
 ![image](https://user-images.githubusercontent.com/69449713/213912365-616b0315-de41-4857-abdc-ed5355f44f8e.png)
